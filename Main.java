@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Main {
 
-    static final List<String> station = new ArrayList<>();
+    static final List<String> station = new ArrayList<>();  //key ord konstant, kommer inte att ändras
 
     static final List<Vehicle> kaj = new ArrayList<>();
 
@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        station.add("A");
+        station.add("A");  //har index 0 osv
         station.add("B");
         station.add("C");//lägger kajplatser i List station
         station.add("D");
@@ -32,24 +32,24 @@ public class Main {
 
             HuvudMeny = sc.nextInt();
 
-            if (HuvudMeny == 1) {
+            if (HuvudMeny == 1) {                               //val att se parkerade bilar
                 {
                     for (int i = 0; i < 5; i++) {
                         if (kaj.get(i) != null) {
                             System.out.println("Lastkaj " + station.get(i));
-                            System.out.println(kaj.get(i));
+                            System.out.println(kaj.get(i));                     //(i)= return "Skåpbil, vikt = " + vikt; från barnClass
                         }
                     }
                 }
             } else if (HuvudMeny == 2) {
 
                 {
-                    Vehicle vehicle;                              // reference variable
+                    Vehicle vehicle;                              // initialiserar var klass Vehicle med namn vehicle
                     int typ;
 
                     while (true) {
 
-                        System.out.println("Typer av lastbilar:");  // val typ av bil från användaren
+                        System.out.println("Typer av lastbilar:");          // val typ av bil från användaren
                         System.out.println("1. Skåpbil ");
                         System.out.println("2. Lätt lastbil");
                         System.out.println("3. Tung lastbil");
@@ -68,20 +68,20 @@ public class Main {
                     int vikt = sc.nextInt();
 
                     if (typ == 1) {
-                        vehicle = new MiniVan(vikt);
+                        vehicle = new MiniVan(vikt);            //skapar objekt MiniVan
                     } else if (typ == 2) {
                         vehicle = new LitenLastbil(vikt);
                     } else {
                         vehicle = new StorLastbil(vikt);
                     }
 
-                    int kajIndex = -1;                          // sätter in utgångs värde
+                    int  kajIndex = -1;                          // sätter in utgångs värde, alla kajer är upptagna (om villkor på typ/vikt inte utförs)
 
-                    if (vehicle.getTyp() == 1) {                // om biltyp -MiniVan
-                        if (kaj.get(0) == null) {               // och om kajIndex 0 i List kaj ej upptagen - null
-                            kajIndex = 0;                       // kajIndex får värde "A" i list "station" osv
+                    if (vehicle.getTyp() == 1) {                // om vald biltyp 1
+                        if (kaj.get(0) == null) {               // ==null-> kaj är ej upptagen
+                            kajIndex = 0;                       // skriver kajIndex 0, som får värde "A" från list "station"
                         } else if (kaj.get(1) == null) {
-                            kajIndex = 1;
+                            kajIndex = 1;                        //...och kan få kajIndex "В" från list "station" osv
                         }
                     } else if (vehicle.getTyp() == 2) {
                         if (kaj.get(2) == null) {
@@ -99,11 +99,11 @@ public class Main {
                         }
                     }
 
-                    if (kajIndex == -1) {
+                    if (kajIndex == -1) {                   // om alla kajIndex upptagna
                         System.out.println("Tyvärr är det fullt, du hänvisas till stationen \"Dumpa mest!\"");
                     } else {
-                        System.out.println("Lastbil registrerad för kaj " + station.get(kajIndex)); //...+ "värdet" som tillhör index i list "kaj"
-                        kaj.set(kajIndex, vehicle);
+                        System.out.println("Lastbil registrerad för kaj " + station.get(kajIndex));     //...+ "värdet" som tillhör index i list "kaj"
+                        kaj.set(kajIndex, vehicle);             //enligt kajIndex tillsätter Typ av bil
                     }
                 }
             } else if (HuvudMeny == 3) {
