@@ -1,13 +1,13 @@
-public abstract class Vehicle {
+public  class Vehicle {
     protected double vikt;
     protected int typ;
 
-    Vehicle(int typ){
 
-        this.typ = typ;
+    public double getVikt(){
+        return vikt;
     }
 
-    public abstract double getVikt();
-
-    public abstract int getTyp();
+    public int getTyp() {
+        return typ;
+    }
 }
